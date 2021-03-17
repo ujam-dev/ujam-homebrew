@@ -1,0 +1,91 @@
+# Beatmaker series
+
+- cask: beatmaker-eden
+  name: Beatmaker EDEN
+  sku: BM-EDEN
+  desc: VST/AU/AAX instrument plugin for dance and EDM drums
+  homepage: https://www.ujam.com/beatmaker/eden/
+  has_downloader: false
+  api_sku: BM-EDEN2
+
+- cask: beatmaker-hustle
+  name: Beatmaker HUSTLE
+  sku: BM-HUSTLE
+  desc: VST/AU/AAX instrument plugin for trap and grime drums
+  homepage: https://www.ujam.com/beatmaker/hustle/
+  has_downloader: false
+  api_sku: BM-HUSTLE2
+
+- cask: beatmaker-dope
+  name: Beatmaker DOPE
+  sku: BM-DOPE
+  desc: VST/AU/AAX instrument plugin for hip-hop and boom bap drums
+  homepage: https://www.ujam.com/beatmaker/dope/
+  has_downloader: false
+  api_sku: BM-DOPE2
+
+- cask: beatmaker-void
+  name: Beatmaker VOID
+  sku: BM-VOID
+  desc: VST/AU/AAX instrument plugin for instant drum & bass rhythms
+  homepage: https://www.ujam.com/beatmaker/void/
+  has_downloader: false
+
+- cask: beatmaker-vice
+  name: Beatmaker VICE
+  sku: BM-VICE
+  desc: VST/AU/AAX instrument plugin for synthwave and 80s pop drums
+  homepage: https://www.ujam.com/beatmaker/vice/
+  has_downloader: false
+
+- cask: beatmaker-hype
+  name: Beatmaker HYPE
+  sku: BM-HYPE
+  desc: VST/AU/AAX instrument plugin for progressive house and EDM drums
+  homepage: https://www.ujam.com/beatmaker/hype/
+  has_downloader: false
+
+- cask: beatmaker-kandy
+  name: Beatmaker KANDY
+  sku: BM-KANDY
+  desc: VST/AU/AAX instrument plugin for sweet and edgy pop drums
+  homepage: https://www.ujam.com/beatmaker/kandy/
+  has_downloader: false
+
+- cask: beatmaker-nemesis
+  name: Beatmaker NEMESIS
+  sku: BM-NEMESIS
+  desc: VST/AU/AAX instrument plugin for broken and futuristic drums
+  homepage: https://www.ujam.com/beatmaker/nemesis/
+  has_downloader: false
+
+
+# Finisher series
+
+- cask: finisher-fluxx
+  name: Finisher FLUXX
+  sku: FIN-FLUXX
+  desc: VST/AU/AAX effect plugin for deconstructing, transforming, and animating sounds
+  homepage: https://www.ujam.com/finisher/fluxx/
+  has_downloader: false
+
+- cask: finisher-neo
+  name: Finisher NEO
+  sku: FIN-NEO 
+  desc: VST/AU/AAX multi-effect plugin
+  homepage: https://www.ujam.com/finisher/neo/
+  has_downloader: false
+
+- cask: finisher-micro
+  name: Finisher MICRO
+  sku: FIN-MICRO
+  desc: Free VST/AU/AAX multi-effect plugin
+  homepage: https://www.ujam.com/finisher/micro/
+  has_downloader: false
+
+- cask: finisher-voodoo
+  name: Finisher VOODOO
+  sku: FIN-VOOD
+  desc: VST/AU/AAX guitar effect plug-in
+  homepage: https://www.ujam.com/finisher/voodoo/
+  has_downloader: false

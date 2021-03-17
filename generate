@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib/cask-generator'
+
+resources_dir = File.join(__dir__, 'resources')
+templates_dir = File.join(__dir__, 'templates')
+output_dir = File.join(`brew --repository`.strip!, 'Library/Taps/homebrew/homebrew-cask/Casks')
+
+generator = CaskGenerator.new(resources_dir, templates_dir, output_dir)
+generator.render

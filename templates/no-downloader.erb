@@ -1,0 +1,18 @@
+cask "<%= cask %>" do
+  version "<%= version_with_build_numer %>"
+  sha256 :no_check
+
+  url "<%= url %>"
+  name "<%= name %>"
+  desc "<%= desc %>"
+  homepage "<%= homepage %>"
+
+  pkg "<%= api_sku %>_osx_#{version.after_comma}.pkg"
+
+  uninstall pkgutil: "com.ujam.<%= sku.gsub(/[^0-9A-Za-z]/, '').downcase %>.*"
+
+  zap trash: [
+    "/Library/Application Support/UJAM/<%= sku %>",
+    "~/Library/Application Support/UJAM/<%= sku %>",
+  ]
+end
