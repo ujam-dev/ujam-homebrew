@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+ACCOUNT_NAME = "ujam-dev"
+BREW_MAIN_BRANCH = "master"
+CASK_DIR = File.join(`brew --repository`.strip!, 'Library/Taps/homebrew/homebrew-cask/Casks')
+
+MODE_NEW = 0
+MODE_MODIFIED = 1
+
+new_files = ''
+
+def get_file_array(ret)
+  # convert to array and only include .rb files
+  ret.split($/).delete_if { |i| !i.end_with? '.rb' }
+end
+
+Dir.chdir(CASK_DIR) do   
+  # get unstaged files
+  new_files = get_file_array(%x[git ls-files . --exclude-standard --others])
+
+  # get modified files
+  modified_files = get_file_array(%x[git ls-files . --modified])
+
+end
+
+# FIXME: There is probably a nicer way without globals and
+# `method_missing`, but this gets the job done.
+$meta = {}
+
+def method_missing(m, *args, &block)
+  if m == :name and args[0]
+    $meta[$current_cask]["name"] = args[0]
+  elsif m == :version and args[0]
+    $meta[$current_cask]["version"] = args[0].split(',')[0]
+  end
+end
+
+def cask(c)
+  $current_cask = c
+  $meta[c] = {}
+  $meta[c]["mode"] = $mode
+  yield
+end
+
+# read meta data from unstaged casks
+for f in new_files
+  $mode = MODE_NEW
+  eval(File.open(File.join(CASK_DIR, f)).read)
+end
+
+# read meta data from modified casks
+for f in modified_files
+  $mode = MODE_MODIFIED
+  eval(File.open(File.join(CASK_DIR, f)).read)
+end
+
+Dir.chdir(CASK_DIR) do
+  # perform git operations
+  for name, c in $meta 
+    if c["mode"] == MODE_NEW
+      msg = "Add %s %s" % [ c["name"], c["version"] ]
+    else
+      msg = "Update %s %s" % [ c["name"], c["version"] ]
+    end
+    branch = "%s-cask" % name
+    filename = "%s.rb" % name
+
+    break unless system('git', 'checkout', '-b', branch)
+    break unless system('git', 'add', filename)
+    break unless system('git', 'commit', '-m', msg)
+    break unless system('git', 'push', ACCOUNT_NAME, branch)
+    break unless system('git', 'checkout', BREW_MAIN_BRANCH)
+  end
+
+  # make sure to always revert back to main branch
+  system('git', 'checkout', BREW_MAIN_BRANCH)
+end
